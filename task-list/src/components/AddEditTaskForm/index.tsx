@@ -5,14 +5,18 @@ import Input from "../Input"
 import Modal from "../Modal"
 import "./style.scss"
 
-const AddEditTaskForm = () => {
+type AddEditTaskFormProps = {
+  onClose: () => void;
+};
+
+const AddEditTaskForm: React.FC<AddEditTaskFormProps> = ({ onClose }) => {
   return (
     <Modal>
       <form>
         <div className="add-edit-modal">
           <div className="flx-between">
             <span className="modal-title">Add Task </span>
-            <Close className="cp" />
+            <Close className="cp" onClick={onClose}/>
           </div>
           <Input label="Task" placeholder="Type your task here..." onChange={() => {}} name="title" value="" />
           <div className="modal-priority">

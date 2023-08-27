@@ -1,39 +1,47 @@
-import './index.scss'
+import './index.scss';
 
-const ResultBox = () => {
+interface ResultBoxProps {
+  wordCount: number;
+  characterCount: number;
+  sentenceCount: number;
+  paragraphCount: number;
+  pronounCount: number;
+}
+
+const ResultBox: React.FC<ResultBoxProps> = ({ wordCount, characterCount, sentenceCount, paragraphCount, pronounCount}) => {
   const resultBar = [
     {
       title: 'Words',
-      value: 0,
+      value: wordCount,
     },
     {
       title: 'Characters',
-      value: 0,
+      value: characterCount,
     },
     {
       title: 'Sentences',
-      value: 0,
+      value: sentenceCount,
     },
     {
       title: 'Paragraphs ',
-      value: 0,
+      value: paragraphCount,
     },
     {
       title: 'Pronouns',
-      value: 0,
+      value: pronounCount,
     },
-  ]
+  ];
 
   return (
-    <div className="result-bar">
-      {resultBar.map(({ title, value }) => (
-        <div className="result-box" key={title}>
-          <span className="box-title">{title}</span>
-          <span className="box-value">{value}</span>
-        </div>
-      ))}
-    </div>
-  )
-}
+      <div className="result-bar">
+        {resultBar.map(({ title, value }) => (
+            <div className="result-box" key={title}>
+              <span className="box-title">{title}</span>
+              <span className="box-value">{value}</span>
+            </div>
+        ))}
+      </div>
+  );
+};
 
-export default ResultBox
+export default ResultBox;

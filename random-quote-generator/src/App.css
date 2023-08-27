@@ -1,10 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600&display=swap");
 
 :root {
-  --primary-color: #ff7d1f;
-  --secondary-color: #f0faf9;
+  --primary-color: #000000;
+  --secondary-color: #3b8258;
 
-  --primary-text-color: #46474e;
+  --primary-text-color: #b7b7c7;
   --light-gary: #999999;
 }
 

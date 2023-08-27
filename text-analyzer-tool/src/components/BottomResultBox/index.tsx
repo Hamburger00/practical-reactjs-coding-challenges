@@ -1,14 +1,19 @@
 import './index.scss'
 
-const BottomResultBox = () => {
+interface BottomResultBoxProps {
+  readTime: number;
+  longestWord: string;
+}
+
+const BottomResultBox: React.FC<BottomResultBoxProps> = ({ readTime, longestWord }) => {
   const bottomResultBar = [
     {
       title: 'Average Reading Time:',
-      value: '-',
+      value: '~ ' + readTime + ' Min.' ,
     },
     {
       title: 'Longest word:',
-      value: '-',
+      value: longestWord,
     },
   ]
 

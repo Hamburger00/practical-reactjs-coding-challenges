@@ -40,16 +40,15 @@ const AddEditTaskForm: React.FC<AddEditTaskFormProps> = ({ onClose, onNewTaskLis
     } else {
       const editTask = {
         id: editedTask.id,
-        title: editedTask.title,
-        priority: editedTask.priority,
-        status: "To Do",
-        progress: 0
+        title: task,
+        priority: selectedPriority,
+        status: editedTask.status,
+        progress: editedTask.progress
       }
+      onEditTaskList(editTask);
+      console.log("Edited a new task!", editTask)
+      onClose()
     }
-  }
-
-  const handleEdit = (e: any) => {
-
   }
 
   const isSelected = (priority: string) => {

@@ -6,6 +6,7 @@ import DeleteModal from "./components/DeleteModal"
 import TaskCard from "./components/TaskCard"
 import { taskList, Task} from "./siteData/taskList"
 import {useState} from "react";
+import {log} from "util";
 
 const App = () => {
     const [showAddEditModal, setShowAddEditModal] = useState(false);
@@ -18,43 +19,52 @@ const App = () => {
         setTaskList((taskList) => [newTask, ...taskList]);
     };
 
-    const handleEditTaskList = () => {
-        console.log("handleEditTaskList")
-        if (editingTask) {
-        console.log("editing task" + newTask)
-        setTaskList(prevTaskList => prevTaskList.map(task => task.id === editingTask.id ? {...task, ...editingTask} : task))
-        }
-    }
+    const handleEditTaskList = (editedTask: Task) => {
+        setTaskList(prevTaskList =>
+            prevTaskList.map(task =>
+                task.id === editedTask.id ? { ...task, ...editedTask } : task
+            )
+        );
+        setShowAddEditModal(false); // Close the edit modal
+    };
 
     const handleTaskDelete = () => {
         if (selectedTask) {
             console.log("Task deleted" + selectedTask);
-            setTaskList((newTask) => newTask.filter(task => task.id !== selectedTask.id));
+            setTaskList((prevTaskList) => prevTaskList.filter(task => task.id !== selectedTask.id));
             setShowDeleteModal(false);
             setSelectedTask(null);
         }
     };
 
-    const handleEditClick = (task: Task) => {
-        setEditingTask(task);
-        setShowAddEditModal(true); // Open the add/edit modal
-    };
-
     const handleTaskClick = (task: Task) => {
         setSelectedTask(task);
         setShowDeleteModal(true)
+        setEditingTask(task);
+        setShowAddEditModal(true);
+    }
+
+    const logButton = () => {
+        console.log(newTask)
     }
 
     return (
     <div className="container">
       <div className="page-wrapper">
         <div className="top-title">
+            <Button title={"log"} onClick={logButton} />
           <h2>Task List</h2>
           <Button title="Add Task" icon={<Add />} onClick={() => {setShowAddEditModal(true)}} />
         </div>
         <div className="task-container">
           {newTask.map((task) => (
-            <TaskCard key={task.id} task={task} setShowDeleteModal={setShowDeleteModal} setSelectedTask={setSelectedTask} onClick={handleTaskClick} onEdit={handleEditClick}/>
+            <TaskCard key={task.id} task={task}
+                      setShowDeleteModal={setShowDeleteModal}
+                      setSelectedTask={setSelectedTask}
+                      setShowEditModal={setShowAddEditModal}
+                      setEditingTask={setEditingTask}
+                      onClick={handleTaskClick}
+            />
           ))}
         </div>
       </div>

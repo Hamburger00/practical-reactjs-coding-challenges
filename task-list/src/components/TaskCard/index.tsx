@@ -9,22 +9,22 @@ import {useState} from "react";
 
 const TaskCard = ({ task, setShowDeleteModal, setSelectedTask, setShowEditModal, setEditingTask }: any) => {
     const { id, title, priority, status, progress } = task
-    const [statusIndex, setStatusIndex] = useState(0)
     const statuses = ["To Do", "In Progress", "Done"]
 
-
-    const handleClick = () => {
-        setShowDeleteModal(true)
-        setSelectedTask(task)
-    }
+    const [statusIndex, setStatusIndex] = useState(0)
 
     const handleEditClick = () => {
         setShowEditModal(true)
         setEditingTask(task)
     }
 
+    const handleClick = () => {
+        setShowDeleteModal(true)
+        setSelectedTask(task)
+    }
+
     const handleStatus = () => {
-        // use switch case
+        // +1 until hit length of array
         let nextStatusIndex = (statusIndex + 1) % statuses.length;
         setStatusIndex(nextStatusIndex);
 

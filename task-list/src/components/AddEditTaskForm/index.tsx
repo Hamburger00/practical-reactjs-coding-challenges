@@ -72,15 +72,13 @@ const AddEditTaskForm: React.FC<AddEditTaskFormProps> = ({ onClose, onNewTaskLis
                     key={priority}
                     className={classNames({[`${priority}-selected`]: isSelected(priority) })}
                     onClick={() => {setSelectedPriority(priority)}}>
-                  {priority}
+                    {priority}
                 </li>
               ))}
             </ul>
           </div>
           <div className="flx-right mt-50">
-            {/*TODO: better way to do this?*/}
-            <Button title={editedTask ? 'Save' : 'Add'} onClick={(e) => {handleTask(e);
-                onClose();
+            <Button title={editedTask ? 'Save' : 'Add'} onClick={(e) => {handleTask(e);onClose();
               }} />
           </div>
         </div>
